@@ -128,7 +128,6 @@ def problem2a(circle, rectangle, window):
     window.render()
 
 
-
 def run_test_problem2b():
     """ Tests the  problem2b   function. """
     print()
@@ -191,7 +190,7 @@ def problem2b(rect, n, delta, win):
       :type win:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -202,13 +201,20 @@ def problem2b(rect, n, delta, win):
 
     rect.attach_to(win)
     win.render()
-    corner1 = rg.Point(rect.upp)
+    corner1 = rg.Point(rect.get_upper_left_corner().x, rect.get_upper_left_corner().y)
+    corner2 = rg.Point(rect.get_lower_right_corner().x, rect.get_lower_right_corner().y)
 
-
-    for k in range(n):
-
-
+    for k in range(n - 1):
+        corner1.x = corner1.x - delta
+        corner1.y = corner1.y - delta
+        corner2.x = corner2.x + delta
+        corner2.y = corner2.y + delta
+        new_rect = rg.Rectangle(corner1, corner2)
+        new_rect.attach_to(win)
+        win.render(0.05)
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
+
+
 main()
