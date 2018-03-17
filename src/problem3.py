@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 3.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Noelle Hale.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -32,7 +32,6 @@ def main():
     """ Calls the   TEST   functions in this module. """
     run_test_problem3a()
     run_test_problem3b()
-
 
 def run_test_problem3a():
     """ Tests the   problem3a   function. """
@@ -103,6 +102,18 @@ def run_test_problem3a():
     # your choice), add 1 more test case of your own choosing.
     # ------------------------------------------------------------------
 
+    # Test 5
+    title = 'Problem 3a. Test 5: Start at (10, 10), 7 lines'
+    window4 = rg.RoseWindow(800, 600, title)
+    point = rg.Point(10, 10)
+    expected = 49
+    answer = problem3a(window4, point, 7)
+    print()
+    print('Test 5 expected:', expected)
+    print('       actual:  ', answer)
+
+    window4.close_on_mouse_click()
+
 
 def problem3a(window, point, n):
     """
@@ -145,6 +156,29 @@ def problem3a(window, point, n):
     #    DIFFICULTY:      7 or 8
     #    TIME ESTIMATE:   20 to 35 minutes.
     # ------------------------------------------------------------------
+
+    end_point = rg.Point(point.x, point.y + 50)
+
+    # first_line = rg.Line(point, end_point)
+    # first_line.thickness = 1
+    # first_line.attach_to(window)
+    total = 0
+
+    for k in range(n):
+        new_point = rg.Point(point.x + (20 * k), point.y + (10 * k))
+        new_end_point = rg.Point(end_point.x + (20 * k), end_point.y + (10 * k))
+
+        line = rg.Line(new_point, new_end_point)
+        if line.thickness < 13 and line.thickness + (2 * k) <= 13:
+            line.thickness = line.thickness + (2 * k)
+        else:
+            line.thickness = 13
+        total = total + line.thickness
+        line.attach_to(window)
+        window.render()
+
+    return total
+
 
 
 def run_test_problem3b():
