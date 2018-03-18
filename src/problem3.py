@@ -236,7 +236,7 @@ def problem3b(m, point1):
     """
     # ------------------------------------------------------------------
     # DONE: 4. Implement and test this function.
-    #          Tests have been written for you (above).
+    #          Tests have been written for you (above). :)
     #
     ####################################################################
     # IMPORTANT:
